@@ -125,7 +125,7 @@ CxlAssignBus (
     GnbHandle->Address.Address.Segment,
     GnbHandle->Address.Address.Bus,
     NBIO_SPACE(GnbHandle, SIL_RESERVED_15),
-    ((uint32_t) ((uintptr_t)(&NextLastBus)))
+    NextLastBus.Value
     );
 
   xUSLSmnReadModifyWrite (
@@ -265,7 +265,7 @@ CxlAssignResources (
     GnbHandle->Address.Address.Bus,
     NBIO_SPACE (GnbHandle,
       (SMN_IOHUB0NBIO0_NB_PCIE0_PORTA_CXL_RCRB_BASE_ADDR_HI_ADDRESS) + (Engine->Type.Port.PortId * 8)),
-    ((uint32_t)((uintptr_t)(&BarHigh)))
+    BarHigh.Value
     );
 
   BarLow.Field.PCIE0_PORTA_CXL_RCRB_ENABLE = 1;
@@ -274,7 +274,7 @@ CxlAssignResources (
     GnbHandle->Address.Address.Bus,
     NBIO_SPACE (GnbHandle,
       (SMN_IOHUB0NBIO0_NB_PCIE0_PORTA_CXL_RCRB_BASE_ADDR_LO_ADDRESS) + (Engine->Type.Port.PortId * 8)),
-    ((uint32_t)((uintptr_t)(&BarLow)))
+    BarLow.Value
     );
 
   /*
@@ -437,7 +437,7 @@ CxlFindPorts (
             GnbHandle->Address.Address.Segment,
             GnbHandle->Address.Address.Bus,
             NBIO_SPACE(GnbHandle, SMN_NB_CXL_CFG1_ADDRESS),
-            ((uint32_t)((uintptr_t)(&Value))));
+            Value);
       }
 
       /*
